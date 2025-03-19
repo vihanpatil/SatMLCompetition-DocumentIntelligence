@@ -1,0 +1,10 @@
+{
+    "model_prediction": {
+        "image1_q1": "08/07/22",
+        "image1_q2": "please fill in the missing invoice date.",
+        "image1_q3": "08/07/22",
+        "image1_q4": "07/01/99",
+        "image1_q5": "07/08/2022"
+    },
+    "remaining_credit": 95
+}
