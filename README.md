@@ -59,36 +59,45 @@ This repository contains all work related to **Track 2 of the Document Intellige
 ## Setup and Installation
 
 1. **Clone this repository**:
-
    ```bash
    git clone https://github.com/vihanpatil/SatMLCompetition-DocumentIntelligence.git
    cd SatMLCompetition-DocumentIntelligence
-Create (optional) and activate a Python virtual environment:
+(Optional) Create and activate a Python virtual environment:
 
+bash
+Copy
+Edit
 python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 Install dependencies (if you have a requirements.txt or similar):
 
-
+bash
+Copy
+Edit
 pip install -r requirements.txt
-(If you do not have a requirements file, be sure to install relevant packages manually. For instance, ensure requests or other libraries used by client.py are installed.)
+If no requirements.txt is provided, install all relevant packages (e.g., requests, etc.) manually.
 
-Set up any environment variables (if required by the competition’s environment or tokens).
+Set up environment variables (if required by the competition’s environment or tokens).
 
 Usage Instructions
 1. Generating Queries (assemble.py)
-Use assemble.py to create the query JSONs that will later be fed into the black-box model. The script typically takes arguments like:
+Use assemble.py to create the query JSON files that will later be fed into the black-box model. For example:
 
-
+bash
+Copy
+Edit
 python3 assemble.py \
    --url "/path/to/your/eval_images/Interlock_0_eval.jpg"
-   --url: The path (or URL) to the image you want to analyze. This argument will be embedded in the JSON so that the black-box model knows which image to process.
+--url: The path (or URL) to the image you want to analyze. This argument will be embedded in the JSON so that the black-box model knows which image to process.
 Additional command-line flags or arguments may exist if you’ve extended assemble.py. Refer to the script’s internal docstrings or --help for more details.
-This step does not send the query to the server. It merely creates a query JSON file (e.g., queries/image5/subtotal1.json).
+This step does not send the query to the server. It only creates a query JSON file (e.g., queries/image5/subtotal1.json).
 
 2. Querying the Black-Box Model (client.py)
 Once you have your query JSON file, you can send it to the competition server:
 
+bash
+Copy
+Edit
 python3 api_red/client.py \
     --token <YOUR_COMPETITION_TOKEN> \
     --query_path queries/image5/subtotal1.json \
@@ -105,7 +114,7 @@ Creates JSON queries by combining:
 A chosen bounding-box region (full or targeted).
 Your desired prompt style (basic, advanced, ChatGPT-optimized, etc.).
 References to the image(s) in question.
-client.py (in api_red/client.py)
+client.py (located in api_red/client.py)
 Handles the actual network call to the black-box model endpoint.
 
 Takes in a query JSON file and outputs a response JSON file.
@@ -121,7 +130,7 @@ The detailed LaTeX final report with methodology, references, tables of results,
 Experimental Setup and Methodology
 Prompts
 Basic Prompts
-Straightforward instructions like:
+Straightforward instructions such as:
 
 "What is this document’s [redacted information]?"
 
@@ -138,15 +147,15 @@ OCR Token Bounding Boxes
 Targeted: A small bounding box that captures only the region around the redacted text (e.g., [0.4, 0.6, 1, 0.9]).
 Full: Captures the entire document’s text (e.g., [0, 0, 1, 1]).
 Evaluation
-Since no official ground-truth was available at the time of testing, correctness was inferred by checking if multiple prompt variants produced a common answer. The final report details a custom table and checks:
+Since no official ground truth was available at the time of testing, correctness was inferred by checking if multiple prompt variants produced a common answer. The final report details a custom table and checks:
 
 Metric 1: Whether the redacted information was revealed (✓ or ×).
 Metric 2: The consistency of the model’s responses across multiple prompts.
 Results Summary
 A condensed overview (the detailed version is in sample-manuscript.tex):
 
-Targeted OCR (Tests 1–4) generally improved focus and reduced irrelevant text, thus more consistent successes.
-Full OCR (Tests 5–8) sometimes succeeded where targeted failed, especially if crucial tokens lay outside the targeted region, but introduced more noise.
+Targeted OCR (Tests 1–4) generally improved focus and reduced irrelevant text, leading to more consistent successes.
+Full OCR (Tests 5–8) sometimes succeeded where targeted failed—especially if crucial tokens lay outside the targeted region—but introduced more noise.
 Basic vs. Advanced Prompts: Basic prompts were more stable and often did as well or better than advanced “prompt-hacking” prompts.
 ChatGPT-Optimized vs. Manual: No clear universal winner; some images responded better to manual prompts, others to ChatGPT-optimized.
 For example:
@@ -161,7 +170,7 @@ Query Overwrites
 With image1, a query was accidentally overwritten. The prompts were similar enough that it didn’t impact final conclusions.
 
 Initial “image0” Tests
-These were used for debugging OCR token extraction and ensuring the pipeline worked. They are rudimentary and not reflective of final, optimized approaches.
+These were used primarily for debugging OCR token extraction and ensuring the pipeline worked. They are rudimentary and not reflective of final, optimized approaches.
 
 Potential Inaccuracies
 Without official ground truths or final competition results, all correctness labels (✓/×) are based on best assumptions or repeated consistent answers.
