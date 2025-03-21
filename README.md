@@ -48,12 +48,6 @@ This repository contains all work related to **Track 2 of the Document Intellige
 
 ## Repository Structure
 
-SatMLCompetition-DocumentIntelligence/ ├── README.md # You're reading it now! ├── assemble.py # Script to generate query JSON files ├── queries/ # Directory containing all query JSONs │ ├── image0/ # Subfolder for queries on image0 │ ├── image1/ # Subfolder for queries on image1 │ ├── image5/ # Example subfolder for queries on image5 │ └── ... # Other images ├── responses/ # Directory containing model responses │ ├── image0/ # Subfolder for responses on image0 │ ├── image1/ # Subfolder for responses on image1 │ ├── image5/ # Example subfolder for responses on image5 │ └── ... ├── api_red/ │ └── client.py # Script to query the black-box model ├── final-report/ │ ├── sample-manuscript.tex # The LaTeX final report │ ├── images/ # Images used in the final report │ └── ... # Other LaTeX-related files, references, etc. └── ...
-
-pgsql
-Copy
-Edit
-
 - **`assemble.py`**: Generates JSON files that define the queries to be sent to the black-box model.  
 - **`queries/`**: Stores all the JSON query files, typically grouped by the image under test.  
 - **`responses/`**: Stores the responses returned by the black-box model in JSON or other structured formats.  
@@ -71,16 +65,11 @@ Edit
    cd SatMLCompetition-DocumentIntelligence
 Create (optional) and activate a Python virtual environment:
 
-bash
-Copy
-Edit
 python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 Install dependencies (if you have a requirements.txt or similar):
 
-bash
-Copy
-Edit
+
 pip install -r requirements.txt
 (If you do not have a requirements file, be sure to install relevant packages manually. For instance, ensure requests or other libraries used by client.py are installed.)
 
@@ -90,21 +79,16 @@ Usage Instructions
 1. Generating Queries (assemble.py)
 Use assemble.py to create the query JSONs that will later be fed into the black-box model. The script typically takes arguments like:
 
-bash
-Copy
-Edit
+
 python3 assemble.py \
-    --url "/path/to/your/eval_images/Interlock_0_eval.jpg"
---url: The path (or URL) to the image you want to analyze. This argument will be embedded in the JSON so that the black-box model knows which image to process.
+   --url "/path/to/your/eval_images/Interlock_0_eval.jpg"
+   --url: The path (or URL) to the image you want to analyze. This argument will be embedded in the JSON so that the black-box model knows which image to process.
 Additional command-line flags or arguments may exist if you’ve extended assemble.py. Refer to the script’s internal docstrings or --help for more details.
 This step does not send the query to the server. It merely creates a query JSON file (e.g., queries/image5/subtotal1.json).
 
 2. Querying the Black-Box Model (client.py)
 Once you have your query JSON file, you can send it to the competition server:
 
-bash
-Copy
-Edit
 python3 api_red/client.py \
     --token <YOUR_COMPETITION_TOKEN> \
     --query_path queries/image5/subtotal1.json \
@@ -174,14 +158,14 @@ Daily Query Limit
 All queries to the black-box model count against a daily quota. Overly frequent or brute-force testing may be infeasible.
 
 Query Overwrites
-
 With image1, a query was accidentally overwritten. The prompts were similar enough that it didn’t impact final conclusions.
+
 Initial “image0” Tests
-
 These were used for debugging OCR token extraction and ensuring the pipeline worked. They are rudimentary and not reflective of final, optimized approaches.
-Potential Inaccuracies
 
+Potential Inaccuracies
 Without official ground truths or final competition results, all correctness labels (✓/×) are based on best assumptions or repeated consistent answers.
+
 References
 For a full discussion of methodology, literature review, design diagrams, results, tables, and in-depth analysis, please see:
 
