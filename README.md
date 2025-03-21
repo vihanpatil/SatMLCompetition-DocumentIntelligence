@@ -112,6 +112,6 @@ Handles the actual network call to the black-box model endpoint.
 **responses/**
 - Houses all JSON results from the black-box model, mirroring the structure of queries/.
 
-**final-report/sample-manuscript.tex**
+**final-report/**
 - The detailed LaTeX final report with methodology, references, tables of results, and more.
 
