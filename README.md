@@ -63,7 +63,7 @@ This repository contains all work related to **Track 2 of the Document Intellige
    python3 -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-3. **Install dependencies (if you have a requirements.txt or similar):**
+3. **Install dependencies**
    ```bash
    pip install [requirements]
 install all relevant packages (e.g., requests, etc.) manually.
