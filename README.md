@@ -61,7 +61,7 @@ This repository contains all work related to **Track 2 of the Document Intellige
 1. **Clone this repository**:
    ```bash
    git clone https://github.com/vihanpatil/SatMLCompetition-DocumentIntelligence.git
-   cd SatMLCompetition-DocumentIntelligence
+   cd SatMLCompetition-DocumentIntelligence```
 (Optional) Create and activate a Python virtual environment:
 
 bash
