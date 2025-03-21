@@ -65,8 +65,8 @@ This repository contains all work related to **Track 2 of the Document Intellige
 
 3. **Install dependencies (if you have a requirements.txt or similar):**
    ```bash
-   pip install -r requirements.txt
-If no requirements.txt is provided, install all relevant packages (e.g., requests, etc.) manually.
+   pip install [requirements]
+install all relevant packages (e.g., requests, etc.) manually.
 
 4. **Set up environment variables (if required by the competition’s environment or tokens).**
 
@@ -112,6 +112,6 @@ Handles the actual network call to the black-box model endpoint.
 **responses/**
 - Houses all JSON results from the black-box model, mirroring the structure of queries/.
 
-**final-report/**
+**CSE_233_Final_Report.pdf**
 - The detailed LaTeX final report with methodology, references, tables of results, and more.
 
